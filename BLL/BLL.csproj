@@ -43,6 +43,7 @@
     <Compile Include="DataControler.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="GroupSave.cs" />
     <Compile Include="IndexBase.cs" />
     <Compile Include="Lesson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
