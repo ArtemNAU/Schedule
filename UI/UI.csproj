@@ -7,8 +7,8 @@
     <ProjectGuid>{0B51A479-6D18-4C4B-AE54-012D4037B5E8}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IHNIWIMD</RootNamespace>
-    <AssemblyName>IHNIWIMD</AssemblyName>
+    <RootNamespace>Schedule</RootNamespace>
+    <AssemblyName>Schedule</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
