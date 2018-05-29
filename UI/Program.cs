@@ -8,21 +8,27 @@ namespace Schedule
 {
     class Program
     {
-
-        static IndexBase IBase;
+        //static IndexBase IBase;
 
         static void Main()
         {
-            IBase = new IndexBase();
+            ScheduleManager m = new ScheduleManager();
+            m.AddGroup(219);
 
-            Group PI2192 = new Group("PI-219");
-            Setup(PI2192);
-            PI2192.Save(); //не пашет ибо ругается на SQL
+            Console.WriteLine("Список групп:");
+            var gList = m.GetGroupNameList();
+            foreach (int s in gList)
+                Console.WriteLine(s);
 
             Console.ReadLine();
+
+            /*IBase = new IndexBase();
+            Group PI2192 = new Group("PI-219");
+            Setup(PI2192);
+            PI2192.Save(); //не пашет ибо ругается на SQL*/
         }
 
-        static void Setup(Group group)
+        /*static void Setup(Group group)
         {
             IBase.AddT("Іванова Л.М.");
             IBase.AddT("Сідоркіна О.М.");
@@ -37,6 +43,6 @@ namespace Schedule
             group[1].ChangeLesson(1, 2, 3, "6.201");
             group[1].ChangeLesson(2, 1, 2, "6.201");
             group[1].ChangeLesson(3, 3, 4, "8.1001");
-        }
+        }*/
     }
 }
