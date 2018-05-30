@@ -30,6 +30,11 @@ namespace Schedule
             return _dbSet.AsNoTracking().ToList();
         }
 
+        public TEntity[] GetArray()
+        {
+            return _dbSet.ToArray();
+        }
+
         public TEntity FindById(int id)
         {
             return _dbSet.Find(id);

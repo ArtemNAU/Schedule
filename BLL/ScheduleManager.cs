@@ -6,6 +6,7 @@ namespace Schedule
     public class ScheduleManager
     {
         UnitOfWork unitOfWork;
+
         public ScheduleManager()
         {
             unitOfWork = new UnitOfWork();
@@ -20,6 +21,29 @@ namespace Schedule
         public void DeleteGroup(int Id)
         {
             unitOfWork.Groups.Delete(unitOfWork.Groups.FindById(Id));
+        }
+
+        public bool AddElement(int GroupNum = -1, string Name = "none", bool Subj = false)
+        {
+            if (!unitOfWork.CheckElement(GroupNum, Name, Subj))
+            {
+                if (GroupNum == -1)
+                {
+                    if (Subj)
+                    {
+
+                        unitOfWork.Subjects.Create(new Subject(Name));
+                    }
+                    else
+                    {
+                        unitOfWork.Teachers.Create(new Teacher(Name));
+                    }
+                }
+                else
+                {
+                    unitOfWork.Groups.Create(new Group(GroupNum));
+                }
+            }
         }
 
         public List<int> GetGroupNameList()
