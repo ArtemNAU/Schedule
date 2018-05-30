@@ -15,13 +15,11 @@ namespace Schedule
         {
             Group newGroup = new Group(num);
             unitOfWork.Groups.Create(newGroup);
-            unitOfWork.Save();
         }
 
         public void DeleteGroup(int Id)
         {
             unitOfWork.Groups.Delete(unitOfWork.Groups.FindById(Id));
-            unitOfWork.Save();
         }
 
         public List<int> GetGroupNameList()
@@ -30,7 +28,6 @@ namespace Schedule
             var groups = unitOfWork.Groups.Get();
             foreach (Group g in groups)
                 list.Add(g.Number);
-
             return list;
         }
     }

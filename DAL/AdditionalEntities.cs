@@ -42,4 +42,13 @@ namespace Schedule
             this.Name = name;
         }
     }
+
+    public class Group
+    {
+        public int Number { get; set; }
+        public Group(int num)
+        {
+            this.Number = num;
+        }
+    }
 }
