@@ -15,12 +15,19 @@ namespace Schedule
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        public Lesson(int id, int r, Teacher t, Subject s)
+        public Lesson(int id, int r, int t, int s)
         {
-            this.Id = id;
-            this.Room = r;
-            this.Teacher = t;
-            this.Subject = s;
+            Id = id;
+            Room = r;
+            TeacherId = t;
+            SubjectId = s;
+        }
+
+        public void Edit(int r, int t, int s)
+        {
+            if (r > 0) Room = r;
+            if (t > 0) TeacherId = t;
+            if (s > 0) SubjectId = s;
         }
     }
     public class Teacher

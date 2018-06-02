@@ -17,6 +17,11 @@ namespace Schedule
             Group newGroup = new Group(num);
             unitOfWork.Groups.Create(newGroup);
         }
+        
+        public void EditLesson(int g, int d, int l, int room, int teacher, int subject) //если не нужно редачить тот или иной елемент - юзать 0 для входящего значения
+        {
+            unitOfWork.Groups[g][d][l].Edit(room, teacher, subject);
+        }
 
         public bool AddElement(string Name, bool s)
         {
