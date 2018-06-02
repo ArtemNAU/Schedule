@@ -9,7 +9,7 @@ namespace Schedule
     public class Day
     {
         public int Id { get; set; }
-        public int LessonId { get; set; }
+        public int Num { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
 
         public Day()
@@ -17,11 +17,11 @@ namespace Schedule
             Lessons = new List<Lesson>();
         }
 
-        public void SetLesson(int pos, string Room, string tName, string sName)
+        public void SetLesson(string Room, string tName, string sName)
         {
             Teacher teacher = new Teacher(tName);
             Subject subject = new Subject(sName);
-            Lessons[pos] = new Lesson(pos, Room, teacher, subject);
+            Lessons.Add(new Lesson(Room, teacher, subject));
         }
 
         public Lesson this[int index] { get { return Lessons[index]; } }
