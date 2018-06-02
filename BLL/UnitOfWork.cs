@@ -29,7 +29,10 @@ namespace Schedule
             get
             {
                 if (TeachRep == null)
+                {
                     TeachRep = new GenericRepository<Teacher>(db);
+                    TeachRep.Create(new Teacher("Преподаватель не найден"));
+                }
                 return TeachRep;
             }
         }
@@ -39,34 +42,37 @@ namespace Schedule
             get
             {
                 if (SubRep == null)
+                {
                     SubRep = new GenericRepository<Subject>(db);
+                    SubRep.Create(new Subject("Предмет не найден"));
+                }
                 return SubRep;
             }
         }
 
-        public bool CheckElement(int g = -1, string n = "", bool s = false)
+        public int CheckElement(int g = -1, string n = "", bool s = false)
         {
-            bool check = false;
+            int check = -1;
             if (g == -1)
             {
                 if (s)
                 {
-                    foreach (Subject sub in SubRep.GetArray())
-                        if (sub.Name == n)
-                            check = true;
+                    for(int i = 0; i < SubRep.Length; i++)
+                        if (SubRep.GetArray()[i].Name == n)
+                            check = i;
                 }
                 else
                 {
-                    foreach (Teacher t in TeachRep.GetArray())
-                        if (t.Name == n)
-                            check = true;
+                    for (int i = 0; i < TeachRep.Length; i++)
+                        if (TeachRep.GetArray()[i].Name == n)
+                            check = i;
                 }
             }
             else
             {
-                foreach (Group gp in GroupRep.GetArray())
-                    if (gp.Number == g)
-                        check = true;
+                for (int i = 0; i < GroupRep.Length; i++)
+                    if (GroupRep.GetArray()[i].Number == g)
+                        check = i;
             }
             return check;
         }

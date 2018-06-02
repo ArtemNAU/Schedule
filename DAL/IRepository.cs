@@ -35,6 +35,25 @@ namespace Schedule
             return _dbSet.ToArray();
         }
 
+        public int Length
+        {
+            get
+            {
+                return _dbSet.Count();
+            }
+        }
+
+        public TEntity this[int index]
+        {
+            get
+            {
+                if (index > 0 && index < _dbSet.Count())
+                    return _dbSet.ElementAt(index);
+                else
+                    return _dbSet.ElementAt(0);
+            }
+        }
+
         public TEntity FindById(int id)
         {
             return _dbSet.Find(id);
@@ -49,6 +68,17 @@ namespace Schedule
         {
             _context.Entry(item).State = EntityState.Modified;
             _context.SaveChanges();
+        }
+        public bool DeleteAt(int index)
+        {
+            if (index > 0 && index < _dbSet.Count())
+            {
+                _dbSet.Remove(_dbSet.ElementAt(index));
+                return true;
+            }else
+            {
+                return false;
+            }
         }
         public void Delete(TEntity item)
         {

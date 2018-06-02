@@ -17,7 +17,7 @@ namespace Schedule
             Lessons = new List<Lesson>();
         }
 
-        public void SetLesson(int pos, string Room, string tName, string sName)
+        public void SetLesson(int pos, int Room, string tName, string sName)
         {
             Teacher teacher = new Teacher(tName);
             Subject subject = new Subject(sName);
