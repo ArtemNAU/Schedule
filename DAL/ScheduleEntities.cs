@@ -6,6 +6,46 @@ using System.Threading.Tasks;
 
 namespace Schedule
 {
+    public class Group
+    {
+        public int Id { get; set; }
+        public int Number { get; set; }
+        public List<Day> Days { get; set; }
+
+        public Group() { }
+        public Group(int num)
+        {
+            this.Number = num;
+            Days = new List<Day>();
+        }
+
+        public Day this[int index]
+        {
+            get
+            {
+                return Days[index];
+            }
+        }
+    }
+    public class Day
+    {
+        public int Id { get; set; }
+        public int LessonId { get; set; }
+        public virtual List<Lesson> Lessons { get; set; }
+
+        public Day()
+        {
+            Lessons = new List<Lesson>();
+        }
+
+        public void SetLesson(int pos, int Room, int tId, int sId)
+        {
+            Lessons[pos] = new Lesson(pos, Room, tId, sId);
+        }
+
+        public Lesson this[int index] { get { return Lessons[index]; } }
+    }
+
     public class Lesson
     {
         public int Id { get; set; }
@@ -47,26 +87,6 @@ namespace Schedule
         public Subject(string name)
         {
             this.Name = name;
-        }
-    }
-
-    public class Group
-    {
-        public int Number { get; }
-        private Day[] Days;
-
-        public Group(int num)
-        {
-            this.Number = num;
-            Days = new Day[10];
-        }
-
-        public Day this[int index]
-        {
-            get
-            {
-                return Days[index];
-            }
         }
     }
 }
