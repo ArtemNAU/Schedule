@@ -59,52 +59,6 @@ namespace Schedule
             unitOfWork.Groups.Delete(unitOfWork.Groups[id]);
         }
 
-        public Table GetTable(int Num, int filter) //0 - группа, 1 - предмет, 2 - препод, 3 - аудитория
-        {
-            Table table = new Table();
-            if (filter != 0)
-            {
-                for (int d = 0; d < 10; d++)
-                {
-                    for (int l = 0; l < 8; l++)
-                    {
-                        foreach (Group gp in unitOfWork.Groups.Get())
-                        {
-                            if (filter == 1 && Num == gp[d][l].SubjectId)
-                            {
-                                table.Cells[d, l].Edit(unitOfWork.Teachers[Num].Name, gp.Number.ToString(), gp[d][l].Room.ToString());
-                                break;
-                            }
-                            else if (filter == 2 && Num == gp[d][l].TeacherId)
-                            {
-                                table.Cells[d, l].Edit(unitOfWork.Subjects[Num].Name, gp.Number.ToString(), gp[d][l].Room.ToString());
-                                break;
-                            }
-                            else if (filter == 3 && Num == gp[d][l].Room)
-                            {
-                                table.Cells[d, l].Edit(unitOfWork.Subjects[Num].Name, unitOfWork.Teachers[Num].Name, gp.Number.ToString());
-                                break;
-                            }
-                        }
-                    }
-                }
-            }else
-            {
-                for(int d = 0; d < 10; d++)
-                {
-                    for(int l = 0; l < 8; l++)
-                    {
-                        int sID = unitOfWork.Groups[Num][d][l].SubjectId;
-                        int tID = unitOfWork.Groups[Num][d][l].TeacherId;
-                        int Room = unitOfWork.Groups[Num][d][l].Room;
-                        table.Cells[d, l].Edit(unitOfWork.Subjects[sID].Name, unitOfWork.Teachers[tID].Name, Room.ToString());
-                    }
-                }
-            }
-
-            return table;
-        }
-
         public bool AddElement(int GroupNum = -1, string Name = "none", bool Subj = false)
         {
             if (unitOfWork.CheckElement(GroupNum, Name, Subj) == -1)
