@@ -86,7 +86,7 @@ namespace Schedule
         public List<int> GetGroupNameList()
         {
             var list = new List<int>(); // юзаем var т.к. левая часть очевидна
-            var groups = unitOfWork.Groups.Get();
+            var groups = unitOfWork.Groups.GetAll(d => d.Days);
             foreach (Group g in groups)
                 list.Add(g.Number);
             return list;

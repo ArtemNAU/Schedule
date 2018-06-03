@@ -28,7 +28,7 @@ namespace Schedule
                 {
                     for (int l = 0; l < 8; l++)
                     {
-                        foreach (Group gp in unitOfWork.Groups.Get())
+                        foreach (Group gp in unitOfWork.Groups.GetAll(dl => dl.Days))
                         {
                             if (filter == 1 && Num == gp[d][l].SubjectId)
                             {
