@@ -1,13 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Schedule
 {
-    [TestClass]
-    public class UnitTest1
+    [TestFixture]
+    public class NUnitTest1
     {
-
-        [TestMethod]
+        [Test()]
         public void AddAndRemove_Teacher()
         {
             ScheduleManager sm = new ScheduleManager();
@@ -22,11 +21,9 @@ namespace Schedule
 
             sm.DeleteElement(1, false);
 
-            Assert.Equals(TName_Expected, sm.GetElement(1, false));
+            Assert.AreEqual(TName_Expected, sm.GetElement(1, false));
         }
-
-
-        [TestMethod]
+        [Test()]
         public void AddAndRemove_Groups()
         {
             ScheduleManager sm = new ScheduleManager();
@@ -41,20 +38,20 @@ namespace Schedule
 
             int[] list_expected = new int[] { 219, 217, 314 };
 
-            Assert.Equals(list_expected, sm.GetGroupNameList().ToArray());
+            Assert.AreEqual(list_expected, sm.GetGroupNameList().ToArray());
         }
 
-        [TestMethod]
+        [Test()]
         public void Get_WrongIndex()
         {
             ScheduleManager sm = new ScheduleManager();
 
             string expected = "Предмет не найден";
 
-            Assert.Equals(expected, sm.GetElement(5, true));
+            Assert.AreEqual(expected, sm.GetElement(5, true));
         }
 
-        [TestMethod]
+        [Test()]
         public void Edit_Element()
         {
             ScheduleManager sm = new ScheduleManager();
@@ -64,10 +61,10 @@ namespace Schedule
             sm.AddElement("Для теста", false);
             sm.EditElement(0, expected, false);
 
-            Assert.Equals(expected, sm.GetElement(0, false));
+            Assert.AreEqual(expected, sm.GetElement(0, false));
         }
 
-        [TestMethod]
+        [Test()]
         public void Edit_Day()
         {
             ScheduleManager sm = new ScheduleManager();
@@ -81,7 +78,7 @@ namespace Schedule
             TableCell tc = new TableCell();
             tc.Edit("Сетевые технологии", "Федулкин", "114");
 
-            Assert.Equals(tc, tb.Cells[1,3]);
+            Assert.AreEqual(tc, tb.Cells[1, 3]);
         }
     }
 }
