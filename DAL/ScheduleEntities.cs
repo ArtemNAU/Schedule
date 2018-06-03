@@ -30,7 +30,6 @@ namespace Schedule
     public class Day
     {
         public int Id { get; set; }
-        public int LessonId { get; set; }
         public virtual List<Lesson> Lessons { get; set; }
 
         public Day()
@@ -51,9 +50,7 @@ namespace Schedule
         public int Id { get; set; }
         public int Room { get; set; }
         public int TeacherId { get; set; }
-        public Teacher Teacher { get; set; }
         public int SubjectId { get; set; }
-        public Subject Subject { get; set; }
 
         public Lesson(int id, int r, int t, int s)
         {

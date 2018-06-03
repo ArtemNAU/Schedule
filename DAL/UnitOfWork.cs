@@ -9,10 +9,12 @@ namespace Schedule
     public class UnitOfWork
     {
         private ScheduleContext db = new ScheduleContext();
+        private UserContext db_user = new UserContext();
 
         private GenericRepository<Group> GroupRep;
         private GenericRepository<Teacher> TeachRep;
         private GenericRepository<Subject> SubRep;
+        private GenericRepository<User> UserRep;
 
         public GenericRepository<Group> Groups
         {
@@ -31,7 +33,7 @@ namespace Schedule
                 if (TeachRep == null)
                 {
                     TeachRep = new GenericRepository<Teacher>(db);
-                    TeachRep.Create(new Teacher("Преподаватель не найден"));
+                    TeachRep.Create(new Teacher("Преподаватели не найдены"));
                 }
                 return TeachRep;
             }
@@ -44,9 +46,22 @@ namespace Schedule
                 if (SubRep == null)
                 {
                     SubRep = new GenericRepository<Subject>(db);
-                    SubRep.Create(new Subject("Предмет не найден"));
+                    SubRep.Create(new Subject("Предметы не найдены"));
                 }
                 return SubRep;
+            }
+        }
+
+        public GenericRepository<User> Users
+        {
+            get
+            {
+                if (UserRep == null)
+                {
+                    UserRep = new GenericRepository<User>(db_user);
+                    UserRep.Create(new User("Пользователи не найдены", 0));
+                }
+                return UserRep;
             }
         }
 

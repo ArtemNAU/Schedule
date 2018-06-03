@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 
 namespace Schedule
@@ -83,13 +84,18 @@ namespace Schedule
             return false;
         }
 
-        public List<int> GetGroupNameList()
+        public List<TeacherDTO> GetAllTeachers()
         {
-            var list = new List<int>(); // юзаем var т.к. левая часть очевидна
-            var groups = unitOfWork.Groups.GetAll(d => d.Days);
-            foreach (Group g in groups)
-                list.Add(g.Number);
-            return list;
+            return Mapper.Map<IEnumerable<Teacher>, List<TeacherDTO>>(unitOfWork.Teachers.Get());
+        }
+
+        public List<SubjectDTO> GetAllSubjects()
+        {
+            return Mapper.Map<IEnumerable<Subject>, List<SubjectDTO>>(unitOfWork.Subjects.Get());
+        }
+        public List<UserDTO> GetAllUsers()
+        {
+            return Mapper.Map<IEnumerable<User>, List<UserDTO>>(unitOfWork.Users.Get());
         }
     }
 }
