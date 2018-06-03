@@ -14,8 +14,11 @@ namespace Schedule
 
         public void AddGroup(int num)
         {
-            Group newGroup = new Group(num);
-            unitOfWork.Groups.Create(newGroup);
+            if (unitOfWork.CheckElement(num) == -1)
+            {
+                Group newGroup = new Group(num);
+                unitOfWork.Groups.Create(newGroup);
+            }
         }
         
         public void EditLesson(int g, int d, int l, int room, int teacher, int subject) //если не нужно редачить тот или иной елемент - юзать 0 для входящего значения
@@ -36,6 +39,14 @@ namespace Schedule
             {
                 return false;
             }
+        }
+
+        public string GetElement(int id, bool s)
+        {
+            if (s)
+                return unitOfWork.Subjects[id].Name;
+            else
+                return unitOfWork.Teachers[id].Name;
         }
 
         public void EditElement(int id, string NewName, bool s)
