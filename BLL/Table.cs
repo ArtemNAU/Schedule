@@ -11,7 +11,6 @@ namespace Schedule
     {
         public TableCell[,] Cells;
 
-
         public Table (int Num, int filter) //0 - группа, 1 - предмет, 2 - препод, 3 - аудитория
         {
             Cells = new TableCell[10,8];

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 using AutoMapper;
 using System;
+=======
+п»їusing System;
+>>>>>>> business_logic
 using System.Collections.Generic;
 
 namespace Schedule
@@ -15,11 +19,14 @@ namespace Schedule
 
         public void AddGroup(int num)
         {
-            Group newGroup = new Group(num);
-            unitOfWork.Groups.Create(newGroup);
+            if (unitOfWork.CheckElement(num) == -1)
+            {
+                Group newGroup = new Group(num);
+                unitOfWork.Groups.Create(newGroup);
+            }
         }
-
-        public void EditLesson(int g, int d, int l, int room, int teacher, int subject) //если не нужно редачить тот или иной елемент - юзать 0 для входящего значения
+        
+        public void EditLesson(int g, int d, int l, int room, int teacher, int subject)
         {
             unitOfWork.Groups[g][d][l].Edit(room, teacher, subject);
         }
@@ -34,7 +41,7 @@ namespace Schedule
                     unitOfWork.Teachers.Create(new Teacher(Name));
                 return true;
             }
-            else
+			else
             {
                 return false;
             }
