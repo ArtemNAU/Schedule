@@ -54,11 +54,14 @@
     <Compile Include="ScheduleContext.cs" />
     <Compile Include="ScheduleEntities.cs" />
     <Compile Include="UnitOfWork.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

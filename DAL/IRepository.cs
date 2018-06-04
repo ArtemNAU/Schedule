@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Schedule
 {
@@ -28,6 +29,16 @@ namespace Schedule
         public IEnumerable<TEntity> Get()
         {
             return _dbSet.AsNoTracking().ToList();
+        }
+
+        public virtual IEnumerable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] properties)
+        {
+            if (properties == null)
+                throw new ArgumentNullException(nameof(properties));
+
+            var query = _dbSet as IQueryable<TEntity>;
+            query = properties.Aggregate(query, (current, property) => current.Include(property));
+            return query.AsNoTracking().ToList();
         }
 
         public TEntity[] GetArray()

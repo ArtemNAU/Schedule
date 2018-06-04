@@ -1,3 +1,4 @@
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 
@@ -25,7 +26,7 @@ namespace Schedule
 
         public bool AddElement(string Name, bool s)
         {
-            if (unitOfWork.CheckElement(-1, Name, s) == -1)
+            if(unitOfWork.CheckElement(-1,Name,s) == -1)
             {
                 if (s)
                     unitOfWork.Subjects.Create(new Subject(Name));
@@ -84,13 +85,18 @@ namespace Schedule
             return false;
         }
 
-        public List<int> GetGroupNameList()
+        public List<TeacherDTO> GetAllTeachers()
         {
-            var list = new List<int>(); // юзаем var т.к. левая часть очевидна
-            var groups = unitOfWork.Groups.Get();
-            foreach (Group g in groups)
-                list.Add(g.Number);
-            return list;
+            return Mapper.Map<IEnumerable<Teacher>, List<TeacherDTO>>(unitOfWork.Teachers.Get());
+        }
+
+        public List<SubjectDTO> GetAllSubjects()
+        {
+            return Mapper.Map<IEnumerable<Subject>, List<SubjectDTO>>(unitOfWork.Subjects.Get());
+        }
+        public List<UserDTO> GetAllUsers()
+        {
+            return Mapper.Map<IEnumerable<User>, List<UserDTO>>(unitOfWork.Users.Get());
         }
     }
 }
