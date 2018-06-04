@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 using AutoMapper;
 using System;
-=======
-﻿using System;
->>>>>>> business_logic
 using System.Collections.Generic;
 
 namespace Schedule
@@ -45,6 +41,14 @@ namespace Schedule
             {
                 return false;
             }
+        }
+
+        public string GetElement(int id, bool s)
+        {
+            if (s)
+                return unitOfWork.Subjects[id].Name;
+            else
+                return unitOfWork.Teachers[id].Name;
         }
 
         public void EditElement(int id, string NewName, bool s)
@@ -90,6 +94,15 @@ namespace Schedule
                 return true;
             }
             return false;
+        }
+
+        public List<int> GetGroupNameList()
+        {
+            var list = new List<int>();
+            var groups = unitOfWork.Groups.Get();
+            foreach (Group g in groups)
+                list.Add(g.Number);
+            return list;
         }
 
         public List<TeacherDTO> GetAllTeachers()
